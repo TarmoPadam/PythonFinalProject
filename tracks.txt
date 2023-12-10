@@ -1,22 +1,20 @@
 - Registration
 
-Create register form in radicals (the app ?)
+Create register form in account_page
 create register html file in templates for the display 
-create a path in urls file in radicals (the app ?)
-create a view in new views file in radicals (the app ?)
-
-If not the app, the app needs to be created 
+create a path in urls file in account_page
+create a view in new views file in account_page
 
 Not created superuser yet
 
 - User login 
 
-create login html file in templates
-create login URL path in radicals
-create login function in views 
+create login html file in account_page/templates
+create login URL path in account_page/urls
+create login function in account_page/views 
 
 - User Logout 
 
-added navbar html in base
+create navbar html in account_page/templates/navbar
 added path logout in urls 
 added logout function in views
