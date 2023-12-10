@@ -17,6 +17,7 @@ This is a SDA final project for online shopping service with front and back offi
     git clone https://github.com/EimantasBlazevicius/PythonRemoteEE19.git
 
     cd PythonRemoteEE19
+     switch branch to "developer"
     ```
 
 2. **Create or Active your virtual environment(mac/windows):**
@@ -33,7 +34,7 @@ This is a SDA final project for online shopping service with front and back offi
     ```bash
     Create: python -m venv venv
     Activate: venv/Scripts/activate
-    switch branch to "developer"
+   
     ```
 
 3. **Install the Requirements:**
