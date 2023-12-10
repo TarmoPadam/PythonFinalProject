@@ -33,19 +33,19 @@ This is a SDA final project for online shopping service with front and back offi
     ```bash
     Create: python -m venv venv
     Activate: venv/Scripts/activate
+    switch branch to "developer"
     ```
 
 3. **Install the Requirements:**
-    switch branch to "developer"
     ```bash
     pip install -r requirements.txt
     ```
-4. **Do the Migrations:**
+5. **Do the Migrations:**
     ```bash
     python manage.py makemigraitons
     python manage.py migrate
     ```
-5. **Run the development server:**
+6. **Run the development server:**
     ```bash
     python manage.py runserver
     ```
