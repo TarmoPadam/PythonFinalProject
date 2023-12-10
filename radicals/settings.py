@@ -37,6 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'front_office.home_page',
+    'front_office.products_page',
+    'front_office.about_page',
+    'front_office.account_page',
+    'front_office.services_page',
+    'front_office.shopping_cart_page',
+    'back_office.settings',
+    'back_office.sales',
+    'back_office.orders',
+    'back_office.invoices',
+    'back_office.customers',
+    'back_office.products',
+
+
+
 ]
 
 MIDDLEWARE = [
