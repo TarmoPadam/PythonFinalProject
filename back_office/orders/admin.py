@@ -3,4 +3,9 @@ from . import models
 
 # Register your models here.
 
-admin.site.register(models.Order)
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date', 'complete_cost')
+
+
+admin.site.register(models.Order, OrderAdmin)

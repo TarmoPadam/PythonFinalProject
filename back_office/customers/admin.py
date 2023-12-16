@@ -10,7 +10,6 @@ class CustomerAdmin(admin.ModelAdmin):
 
     def get_user_full_name(self, obj):
         return obj.user.get_full_name() if obj.user else "N/A"
-
     get_user_full_name.short_description = 'User'
 
 
