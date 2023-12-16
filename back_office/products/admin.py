@@ -3,12 +3,13 @@ from . import models
 
 # Register your models here.
 
-admin.site.register(models.Product)
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ("name", "brand", "category", "supplier")
+
+
+admin.site.register(models.Product, ProductAdmin)
 admin.site.register(models.Category)
 admin.site.register(models.Brand)
 admin.site.register(models.Discount)
 admin.site.register(models.Supplier)
-
-admin.site.register(models.ProductBrand)
-admin.site.register(models.ProductCategory)
-admin.site.register(models.ProductSupplier)

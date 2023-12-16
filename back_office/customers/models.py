@@ -10,3 +10,9 @@ class UserDetail(models.Model):
     total_orders_completed = models.PositiveIntegerField(default=0)
     user_products = models.ManyToManyField(user_product, blank=True)
     user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.last_name}'
+
+    class Meta:
+        verbose_name = "Customer"
