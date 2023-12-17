@@ -17,9 +17,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', lambda request: HttpResponseRedirect('/home_page/')),
     path('customers/', include('back_office.customers.urls')),
     path('invoices/', include('back_office.invoices.urls')),
     path('orders/', include('back_office.orders.urls')),
@@ -33,4 +35,3 @@ urlpatterns = [
     path('services_page/', include('front_office.services_page.urls')),
     path('shopping_cart_page/', include('front_office.shopping_cart_page.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
