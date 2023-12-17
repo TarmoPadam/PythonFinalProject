@@ -26,11 +26,10 @@ urlpatterns = [
     path('products/', include('back_office.products.urls')),
     path('sales/', include('back_office.sales.urls')),
     path('settings/', include('back_office.settings.urls')),
-    path('about_page/', include('front_office.about_page.urls')),
-    path('account_page/', include('front_office.account_page.urls')),
-    path('home_page/', include('front_office.home_page.urls')),
-    path('products_page/', include('front_office.products_page.urls')),
-    path('services_page/', include('front_office.services_page.urls')),
-    path('shopping_cart_page/', include('front_office.shopping_cart_page.urls')),
+    path('about/', include('front_office.about_page.urls')),
+    path('account/', include('front_office.account_page.urls')),
+    path('home/', include('front_office.home_page.urls')),
+    path('products/', include('front_office.products_page.urls')),
+    path('services/', include('front_office.services_page.urls')),
+    path('shopping_cart/', include('front_office.shopping_cart_page.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
