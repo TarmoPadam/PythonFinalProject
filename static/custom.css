@@ -1,8 +1,16 @@
 .dropdown:hover .hover {
-	display: block;
+  display: block;
 }
 
 .container-margin {
-	margin-left: 5%;
-	margin-right: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.background-image {
+  background-image: url("{{ url_for('static', filename='images/background.png') }}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
 }
