@@ -1,8 +1,137 @@
+* {
+	box-sizing: border-box;
+}
+
 .dropdown:hover .hover {
 	display: block;
+}
+
+.navbar {
+	opacity: .8;
 }
 
 .container-margin {
 	margin-left: 5%;
 	margin-right: 5%;
+}
+
+body {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container-track {
+	height: 600px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: start;
+}
+
+.card {
+	width: 200px;
+	border-radius: .75rem;
+	background-size: cover;
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 2rem;
+	margin: 0 10px;
+	display: flex;
+	align-items: flex-end;
+	transition: .6s cublic-bezier(.28,-0.03,0,.99);
+	box-shadow: 0px 10px 30px -5px rgba(0,0,0,0.8);
+}
+
+.card > .row {
+	color: rgb(0, 0, 0);
+	display: flex;
+	flex-wrap: nowrap;
+	padding-top: 30%;
+	padding-right: 50px;
+}
+
+.card > .row > .icon {
+	background: #223;
+	color: white;
+	width: 280px;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	text-align: center;
+	margin: 0px;
+	position: absolute;
+	top: -30px;
+	left: -70px;
+	transform: rotate(-45deg);
+}
+
+.card > .row > .description {
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	height: 340px;
+	width: 520px;
+	opacity: 0;
+	transform: translate(30px);
+	transition-delay: .3s;
+	transition: all .3s ease;
+	padding-left: -20px;
+	padding-right: 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.description p {
+	color: #ffffff !important;
+	padding: 10px;
+	background-image: url('https://cdn.pixabay.com/photo/2014/11/05/12/08/chalkboard-517818_1280.jpg');
+	background-size: cover;
+	opacity: 1 !important;
+	padding-top: 15%;
+}
+
+.description h4 {
+	text-transform: uppercase;
+}
+
+input {
+	display: none;
+}
+
+input:checked + label {
+	width: 600px;
+}
+
+input:checked + label .description {
+	opacity: 1 !important;
+	transform: translateY(0) !important;
+}
+
+.card[for="c1"] {
+	background-image: url('https://img.freepik.com/free-vector/space-station-planet-with-spaceship-astronaut_1308-78124.jpg?w=826&t=st=1703014840~exp=1703015440~hmac=660c0b6bbc5cb58f01c673f11513b3fdeecb49484f6d09badac1b33280aec6b8');
+	opacity: .8;
+}
+
+.card[for="c2"] {
+	background-image: url('https://cdn.pixabay.com/photo/2017/12/28/12/31/sketch-3045125_1280.jpg');
+	opacity: .8;
+}
+
+.card[for="c3"] {
+	background-image: url('https://cdn.pixabay.com/photo/2020/04/23/02/59/encounter-5080869_1280.jpg');
+	opacity: .8;
+}
+
+.card[for="c4"] {
+	background-image: url('https://img.freepik.com/free-vector/planetarium-flat-set-with-isolated-icons-compositions-visitor-characters-telescopes-museum-exhibits-excursions-vector-illustration_1284-80205.jpg?w=996&t=st=1703016399~exp=1703016999~hmac=bc478f1a81bd765e95294f6bddadf20a2433e6609dda7ea1c1927642d5b9b9f9');
+	opacity: .8;
 }
