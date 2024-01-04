@@ -22,6 +22,12 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: HttpResponseRedirect('/home/')),
+    path('backoffice/customers/', include('back_office.customers.urls')),
+    path('backoffice/invoices/', include('back_office.invoices.urls')),
+    path('backoffice/orders/', include('back_office.orders.urls')),
+    path('backoffice/products/', include('back_office.products.urls')),
+    path('backoffice/sales/', include('back_office.sales.urls')),
+    path('backoffice/settings/', include('back_office.settings.urls')),
     path('customers/', include('back_office.customers.urls')),
     path('invoices/', include('back_office.invoices.urls')),
     path('orders/', include('back_office.orders.urls')),
