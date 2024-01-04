@@ -21,7 +21,7 @@ from django.http import HttpResponseRedirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lambda request: HttpResponseRedirect('/home/')),
+    path('', lambda request: HttpResponseRedirect('home/')),
     path('backoffice/customers/', include('back_office.customers.urls')),
     path('backoffice/invoices/', include('back_office.invoices.urls')),
     path('backoffice/orders/', include('back_office.orders.urls')),
