@@ -32,6 +32,7 @@ urlpatterns = [
     path('account/', include('front_office.account_page.urls')),
     path('home/', include('front_office.home_page.urls')),
     path('products/', include('front_office.products_page.urls')),
+    path('pdp/<int:pk>', include('front_office.pdp_page.urls')),
     path('services/', include('front_office.services_page.urls')),
     path('shopping_cart/', include('front_office.shopping_cart_page.urls')),
 ]
