@@ -30,9 +30,9 @@ urlpatterns = [
     path('back_office/sales/', include('back_office.sales.urls')),
     path('back_office/settings/', include('back_office.settings.urls')),
     path('about/', include('front_office.about_page.urls')),
-    path('account/', include('front_office.account_page.urls')),
+    path('accounts/', include('front_office.account_page.urls')),
     path('home/', include('front_office.home_page.urls')),
     path('products/', include('front_office.products_page.urls')),
     path('services/', include('front_office.services_page.urls')),
-    path('shopping_cart/', include('front_office.shopping_cart_page.urls')),
+    path('shoppingcart/', include('front_office.shopping_cart_page.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
