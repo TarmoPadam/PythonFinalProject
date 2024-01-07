@@ -34,7 +34,7 @@ urlpatterns = [
     path('products/', include('front_office.products_page.urls')),
     path('pdp/<int:pk>', include('front_office.pdp_page.urls')),
     path('services/', include('front_office.services_page.urls')),
-    path('shopping_cart/', include('front_office.shopping_cart_page.urls')),
+    path('shoppingcart/', include('front_office.shopping_cart_page.urls')),
 ]
  
 if settings.DEBUG:
