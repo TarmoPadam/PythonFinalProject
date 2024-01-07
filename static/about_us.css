@@ -1,0 +1,191 @@
+* {
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+
+.dropdown:hover .hover {
+	display: block;
+}
+
+.navbar {
+	opacity: .8;
+	z-index: 1;
+}
+
+.container-margin {
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+body {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.container-track {
+	height: 600px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: start;
+	margin-top: -60px;
+}
+
+.card:hover {
+	box-shadow: 0 8px 16px rgba(115, 195, 10, 0.4);
+}
+
+.card:hover .icon,
+.card:hover .description {
+  background-color: #000000e7;
+  color: #000;
+}
+
+.card:hover .icon h4 {
+	animation: spin 0.8s linear infinite;
+	animation: disappear 0.2s linear forwards;
+  }
+
+@keyframes spin {
+	0% {
+	  transform: rotate(0deg);
+	}
+  
+	100% {
+	  transform: rotate(360deg);
+	}
+  }
+  
+ @keyframes disappear {
+	0% {
+	  opacity: 1;
+	}
+  
+	50% {
+	  opacity: 0;
+	}
+  
+	51% {
+	  opacity: 1;
+	}
+}
+
+.card {
+	width: 200px;
+	border-radius: .75rem;
+	background-size: cover;
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 2rem;
+	margin: 0 10px;
+	display: flex;
+	align-items: flex-end;
+	transition: .6s cublic-bezier(.28,-0.03,0,.99);
+	box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.869);
+}
+
+.card > .row {
+	color: rgb(0, 0, 0);
+	display: flex;
+	flex-wrap: nowrap;
+	padding-top: 25%;
+	padding-right: 50px;
+}
+
+.card > .row > .icon {
+	background: #223;
+	color: white;
+	width: 280px;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	text-align: center;
+	margin: 0px;
+	position: absolute;
+	top: -30px;
+	left: -70px;
+	transform: rotate(-45deg);
+}
+
+.card > .row > .description {
+    position: relative;
+    height: 350px;
+    width: 525px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translate(0px);
+    box-sizing: border-box;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.pixabay.com/photo/2014/11/05/12/08/chalkboard-517818_1280.jpg');
+    background-size: cover;
+    opacity: 0.9 !important;
+    z-index: -1;
+}
+
+.description p {
+	color: #ffffff !important;
+	opacity: 1;
+	padding-left: 25px;
+	padding-right: 20px;
+	z-index: 1;
+	padding-top: 18%;
+}
+
+input {
+	display: none;
+}
+
+input:checked + label {
+	width: 600px;
+	box-shadow: 0px 10px 30px 0px turquoise;
+}
+
+input:checked + label .description {
+	opacity: 1 !important;
+	transform: translateY(0) !important;
+}
+
+input:checked + label .icon h4 {
+	transform: translate(-30px, -18px);
+	transition: transform 0.3s ease;
+	color: turquoise;
+}
+
+
+.card[for="c1"] {
+	background-image: url('https://img.freepik.com/free-vector/space-station-planet-with-spaceship-astronaut_1308-78124.jpg?w=826&t=st=1703014840~exp=1703015440~hmac=660c0b6bbc5cb58f01c673f11513b3fdeecb49484f6d09badac1b33280aec6b8');
+	opacity: .8;
+}
+
+.card[for="c2"] {
+	background-image: url('https://cdn.pixabay.com/photo/2017/12/28/12/31/sketch-3045125_1280.jpg');
+	opacity: .8;
+}
+
+.card[for="c3"] {
+	background-image: url('https://cdn.pixabay.com/photo/2020/04/23/02/59/encounter-5080869_1280.jpg');
+	opacity: .8;
+}
+
+.card[for="c4"] {
+	background-image: url('https://img.freepik.com/free-vector/planetarium-flat-set-with-isolated-icons-compositions-visitor-characters-telescopes-museum-exhibits-excursions-vector-illustration_1284-80205.jpg?w=996&t=st=1703016399~exp=1703016999~hmac=bc478f1a81bd765e95294f6bddadf20a2433e6609dda7ea1c1927642d5b9b9f9');
+	opacity: .8;
+}
