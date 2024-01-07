@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'front_office.home_page',
     'front_office.products_page',
+    'front_office.pdp_page',
     'front_office.about_page',
     'front_office.account_page',
     'front_office.services_page',
