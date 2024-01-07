@@ -5,43 +5,61 @@
 
 {% block body %}
 
-<section class="py-5">
+  <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            {% for product in products %}
-            <div class="col mb-5">
-                <div class="card h-100">
-                    <!-- Product image-->
-                    <a href="{% url 'front_office.pdp_page' product.id %}" style="color: rgb(53, 52, 52); text-decoration: none;">
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
-                    <!-- Product details-->
-                    <div class="card-body p-4">
-                        <div class="text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder"> {{ product.name }} </h5></a>
-                            <!-- Product brand-->
-                            Manufacturer: {{ product.brand }}<br>
-                            <h7>Availibility: 
-                                {% if product.in_stock %}
-                                <span class="text-success">                                        
-                                In stock</span>
-                                {% else %}
-                                <span class="text-danger">Out of stock</span>
-                                {% endif %}
-                            </h7><br><br>
-                            <!-- Product price-->
-                            <h5>Price: €{{ product.price }}</h5>
-                        </div>
-                    </div>
-                    <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                        <div class="text-center"><a class="btn btn-success mt-auto" href="#">Add to cart</a>
-                        </div>
-                    </div>
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for product in products %}
+          <div class="col mb-5">
+            <div class="card h-100">
+              <!-- Product image-->
+              <a href="{% url 'front_office.pdp_page' product.id %}" style="color: rgb(53, 52, 52); text-decoration: none;">
+                {% if product.image %}
+                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                {% else %}
+                  <img class="card-img-top" src="">
+                {% endif %}
+                <!-- Product details-->
+                <div class="card-body p-4">
+                  <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">
+                      {{ product.name }}
+                    </h5>
+                  </a>
+                  <!-- Product brand-->
+                  Manufacturer:
+                  {{ product.brand }}<br>
+                  <h7>Availibility:
+                    {% if product.in_stock %}
+                      <span class="text-success">
+                        In stock</span>
+                    {% else %}
+                      <span class="text-danger">Out of stock</span>
+                    {% endif %}
+                  </h7><br><br>
+                  <!-- Product price-->
+                  <h5>Price: €{{ product.price }}</h5>
                 </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="text-center">
+                  <form action="{% url 'shopping_cart_page:show_cart' %}" method="POST">
+                    {% csrf_token %}
+                    {% if product.in_stock %}
+                      <input type="hidden" name="product_id" value="{{ product.id }}">
+                      <button type="submit" class="btn btn-success mt-auto">Add to cart</button>
+                    {% else %}
+                      <input type="hidden" name="product_id" value="{{ product.id }}">
+                      <button type="submit" class="btn btn-secondary mt-auto" disabled="disabled">Add to cart</button>
+                    {% endif %}
+                  </form>
+                </div>
+              </div>
             </div>
-            {% endfor %}
-        </div>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-</section>
+  </section>
 {% endblock body %}
