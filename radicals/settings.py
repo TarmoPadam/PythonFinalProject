@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'front_office.home_page',
     'front_office.products_page',
     'front_office.about_page',
@@ -49,10 +51,14 @@ INSTALLED_APPS = [
     'back_office.invoices',
     'back_office.customers',
     'back_office.products',
+    'back_office.back_office_home_page',
 
 
 
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block title %} About RadicalS {% endblock %}
 {% block body %}
+{% load static %}
+  <link rel="stylesheet" href="{% static 'about_us.css' %}">
     <div class="wrapper">
         <div class="container-track">
-            <input type="radio" name="slide" id="c1" checked>
+            <input type="radio" name="slide" id="c1">
             <label for="c1" class="card">                
                 <div class="row">
                     <div class="icon"><h4>About <br> RadicalS</h4></div>
@@ -13,7 +15,7 @@
                     </div>
                 </div>
             </label>
-            <input type="radio" name="slide" id="c2">
+            <input type="radio" name="slide" id="c2" checked>
             <label for="c2" class="card">                
                 <div class="row">
                     <div class="icon"><h4>Our <br> Mission</h4></div>

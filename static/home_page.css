@@ -1,0 +1,15 @@
+.background-image {
+  background-image: url("images/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 83vh;
+}
+.hero-text {
+  padding-top: 20%;
+}
