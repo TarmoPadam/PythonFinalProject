@@ -6,6 +6,7 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from back_office.customers.models import UserDetail
 
 
 def register_request(request):
@@ -13,6 +14,7 @@ def register_request(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            UserDetail.objects.create(user=user).save()
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("home_page:home")
