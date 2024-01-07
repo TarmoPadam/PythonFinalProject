@@ -18,3 +18,11 @@ create login function in account_page/views
 create navbar html in account_page/templates/navbar
 added path logout in urls 
 added logout function in views
+
+- 21/12/2023 About Us page operations in front_office/about_page
+    Created templates folder and about_us.html to 
+    Created urls.py and its content
+    Modified views.py content
+    Modified custom.css content
+    Additional changes: fixed routing issues, now homepage and 
+navbar About Us link works.

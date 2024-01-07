@@ -26,6 +26,7 @@ class Product(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
+    categories = models.ManyToManyField('Category', blank=True)
     products = models.ManyToManyField(
         Product, related_name='categories', blank=True)
     brands = models.ManyToManyField('Brand', blank=True)
@@ -39,6 +40,7 @@ class Category(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length=255)
+    brands = models.ManyToManyField('Brand', blank=True)
     products = models.ManyToManyField(
         Product, related_name='brands', blank=True)
     categories = models.ManyToManyField(Category, blank=True)

@@ -1,3 +1,59 @@
-from django.shortcuts import render
+from django.db import models
+from django.shortcuts import render, redirect
+from back_office.orders.models import OrderItem
+from django.contrib.auth.decorators import login_required
+from back_office.customers.models import UserDetail
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.http import HttpResponseNotAllowed
+from back_office.products.models import Category, Brand
 
-# Create your views here.
+
+@login_required
+def cart_view(request):
+    user_detail = UserDetail.objects.get(user=request.user)
+    order_items = OrderItem.objects.filter(order__order_user=user_detail)
+
+    total_items_in_cart = order_items.aggregate(
+        total_items=models.Sum('quantity'))['total_items']
+
+    for order_item in order_items:
+        order_item.total_cost = order_item.quantity * order_item.product.price
+
+    total_order_cost = sum(order_item.total_cost for order_item in order_items)
+
+    all_categories = Category.objects.all()
+    all_brands = Brand.objects.all()
+
+    return render(request, 'cart.html', {'order_items': order_items, 'total_items_in_cart': total_items_in_cart, 'all_categories': all_categories, 'all_brands': all_brands, 'total_order_cost': total_order_cost})
+
+
+@login_required
+def update_cart(request):
+    if request.method == 'POST':
+        order_item_id = request.POST.get('order_item_id')
+        quantity = int(request.POST.get('quantity'))
+        order_item = get_object_or_404(OrderItem, id=order_item_id)
+        if quantity > 0:
+            order_item.quantity = quantity
+            order_item.save()
+            messages.success(
+                request, f"{order_item.product.name} quantity updated to {quantity}.")
+        else:
+            order_item.delete()
+            messages.success(
+                request, f"{order_item.product.name} removed from the cart.")
+    return redirect('shopping_cart_page:show_cart')
+
+
+@login_required
+def remove_from_cart(request):
+    if request.method == 'POST':
+        order_item_id = request.POST.get('order_item_id')
+        order_item = get_object_or_404(OrderItem, id=order_item_id)
+        order_item.delete()
+        messages.success(
+            request, f"{order_item.product.name} removed from the cart.")
+        return redirect('shopping_cart_page:show_cart')
+    else:
+        return HttpResponseNotAllowed(['POST'])

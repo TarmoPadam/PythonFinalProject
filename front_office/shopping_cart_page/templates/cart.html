@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block body %}
+  {% block content %}
+    <h2>Your Shopping Cart</h2>
+    <ul>
+      {% for order_item in order_items %}
+        <li>
+          Product:
+          {{ order_item.product.name }}
+          Category:
+          {{ order_item.product.category.title }}
+          Brand:
+          {{ order_item.product.brand.name }}
+          Price: ${{ order_item.product.price }}
+          Quantity:
+          {{ order_item.quantity }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <p>Total Order Cost: ${{ total_order_cost }}</p>
+    <p>Total items in cart:
+      {{ total_items_in_cart|default:0 }}</p>
+
+    <ul>
+      {% for order_item in order_items %}
+        <li>
+          Product:
+          {{ order_item.product.name }}
+          Quantity:
+          {{ order_item.quantity }}
+          <form method="post" action="{% url 'shopping_cart_page:update_cart' %}">
+            {% csrf_token %}
+            <input type="hidden" name="order_item_id" value="{{ order_item.id }}">
+            <input type="number" name="quantity" min="1" value="{{ order_item.quantity }}">
+            <button type="submit">Update Quantity</button>
+          </form>
+          <form method="post" action="{% url 'shopping_cart_page:remove_from_cart' %}">
+            {% csrf_token %}
+            <input type="hidden" name="order_item_id" value="{{ order_item.id }}">
+            <button type="submit">Remove from Cart</button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+
+  {% endblock %}
+{% endblock %}
