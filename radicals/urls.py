@@ -35,4 +35,11 @@ urlpatterns = [
     path('products/', include('front_office.products_page.urls')),
     path('services/', include('front_office.services_page.urls')),
     path('shoppingcart/', include('front_office.shopping_cart_page.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
+ 
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
