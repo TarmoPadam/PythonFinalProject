@@ -6,24 +6,37 @@ from back_office.customers.models import UserDetail
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponseNotAllowed
-from back_office.products.models import Category, Brand
+from back_office.products.models import Category, Brand, Product
+from back_office.orders.models import Order
 
 
 @login_required
 def cart_view(request):
-    user_detail = UserDetail.objects.get(user=request.user)
-    order_items = OrderItem.objects.filter(order__order_user=user_detail)
+    user = request.user
+    user_detail = UserDetail.objects.get(user=user)
+    order, created = Order.objects.get_or_create(order_user=user_detail)
+    order_items = order.order_items.all()
 
     total_items_in_cart = order_items.aggregate(
         total_items=models.Sum('quantity'))['total_items']
 
-    for order_item in order_items:
-        order_item.total_cost = order_item.quantity * order_item.product.price
-
-    total_order_cost = sum(order_item.total_cost for order_item in order_items)
+    total_order_cost = sum(order_item.item_price for order_item in order_items)
 
     all_categories = Category.objects.all()
     all_brands = Brand.objects.all()
+
+    if request.method == "POST":
+        product_id = request.POST.get('product_id')
+        if product_id:
+            product = get_object_or_404(Product, pk=product_id)
+            order_item, created = OrderItem.objects.get_or_create(
+                order=order, product=product)
+            if not created:
+                order_item.quantity += 1
+            else:
+                order_item.quantity = 1
+            order_item.save()
+            return redirect('shopping_cart_page:show_cart')
 
     return render(request, 'cart.html', {'order_items': order_items, 'total_items_in_cart': total_items_in_cart, 'all_categories': all_categories, 'all_brands': all_brands, 'total_order_cost': total_order_cost})
 
