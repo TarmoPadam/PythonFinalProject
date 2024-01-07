@@ -1,0 +1,53 @@
+{% extends "back_base.html" %}
+{% block title %}
+  {% if customer.user.first_name %}
+    {{ customer.user.first_name }}
+  {% else %}
+    {{ customer.user.username }}
+  {% endif %}
+{% endblock title %}
+{% block body %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'customers.css' %}">
+  <div class="content">
+    <h1>Customer Details</h1>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Total Orders</th>
+            <th>Total Amount Spent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              {% if customer.user.first_name %}
+                {{ customer.user.first_name }}
+                {{ customer.user.last_name }}
+              {% else %}
+                {{ customer.user }}
+              {% endif %}
+            </td>
+            <td>{{ customer.total_orders_completed }}</td>
+            <td>{{ customer.total_amount_spent }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h1>Customer Orders</h1>
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Empty</th>
+            <th>Table</th>
+            <th>For</th>
+            <th>Now</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+{% endblock body %}

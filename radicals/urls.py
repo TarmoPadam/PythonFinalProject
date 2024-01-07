@@ -22,16 +22,25 @@ from django.http import HttpResponseRedirect
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: HttpResponseRedirect('home/')),
-    path('backoffice/customers/', include('back_office.customers.urls')),
-    path('backoffice/invoices/', include('back_office.invoices.urls')),
-    path('backoffice/orders/', include('back_office.orders.urls')),
-    path('backoffice/products/', include('back_office.products.urls')),
-    path('backoffice/sales/', include('back_office.sales.urls')),
-    path('backoffice/settings/', include('back_office.settings.urls')),
+    path('back_office/', include('back_office.back_office_home_page.urls')),
+    path('back_office/customers/', include('back_office.customers.urls')),
+    path('back_office/invoices/', include('back_office.invoices.urls')),
+    path('back_office/orders/', include('back_office.orders.urls')),
+    path('back_office/products/', include('back_office.products.urls')),
+    path('back_office/sales/', include('back_office.sales.urls')),
+    path('back_office/settings/', include('back_office.settings.urls')),
     path('about/', include('front_office.about_page.urls')),
-    path('account/', include('front_office.account_page.urls')),
+    path('accounts/', include('front_office.account_page.urls')),
     path('home/', include('front_office.home_page.urls')),
     path('products/', include('front_office.products_page.urls')),
+    path('pdp/<int:pk>', include('front_office.pdp_page.urls')),
     path('services/', include('front_office.services_page.urls')),
-    path('shopping_cart/', include('front_office.shopping_cart_page.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('shoppingcart/', include('front_office.shopping_cart_page.urls')),
+]
+ 
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

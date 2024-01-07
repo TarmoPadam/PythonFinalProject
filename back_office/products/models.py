@@ -1,9 +1,15 @@
 from django.db import models
+from django.db.models import DecimalField
+from django.core.validators import MinValueValidator
 
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    description = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True, max_length=350)
+    details = models.TextField(null=True, blank=True, max_length=1000)
+    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(0.0)])
+    image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
+    in_stock = models.BooleanField(default=False)
     amount_sold = models.PositiveIntegerField(default=0)
     brand = models.ForeignKey(
         'Brand', on_delete=models.SET_NULL, null=True, blank=True)
@@ -20,6 +26,7 @@ class Product(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
+    categories = models.ManyToManyField('Category', blank=True)
     products = models.ManyToManyField(
         Product, related_name='categories', blank=True)
     brands = models.ManyToManyField('Brand', blank=True)
@@ -33,6 +40,7 @@ class Category(models.Model):
 
 class Brand(models.Model):
     name = models.CharField(max_length=255)
+    brands = models.ManyToManyField('Brand', blank=True)
     products = models.ManyToManyField(
         Product, related_name='brands', blank=True)
     categories = models.ManyToManyField(Category, blank=True)
