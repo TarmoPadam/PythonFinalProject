@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %} About RadicalS {% endblock %}
+{% block body %}
+{% load static %}
+  <link rel="stylesheet" href="{% static 'about_us.css' %}">
+    <div class="wrapper">
+        <div class="container-track">
+            <input type="radio" name="slide" id="c1">
+            <label for="c1" class="card">                
+                <div class="row">
+                    <div class="icon"><h4>About <br> RadicalS</h4></div>
+                    <div class="description">
+                        <div class="overlay"></div>
+                        <p>RadicalS was founded by a team of seven passionate developers, spread across three countries. Despite the geographical distance, we were united by a shared dream: to make robotics and space engineering accessible to everyone. Together, we overcame obstacles, learned from each other, and ultimately achieved our goal. The journey was exhilarating and the feeling of success was pure bliss!</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c2" checked>
+            <label for="c2" class="card">                
+                <div class="row">
+                    <div class="icon"><h4>Our <br> Mission</h4></div>
+                    <div class="description">
+                        <div class="overlay"></div>
+                        <p>Our mission is to ignite the minds of individuals and communities around the world, empowering them to explore the fascinating realm of robotics and space engineering. Through education, mentoring, and access to premium electronic components, we aspire to open doors to these exciting fields, giving everyone the chance to learn, innovate and contribute to technological breakthroughs.</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c3">
+            <label for="c3" class="card">                
+                <div class="row">
+                    <div class="icon"><h4>Our <br> Dream</h4></div>
+                    <div class="description">
+                        <div class="overlay"></div>                        
+                        <p>We are a group of passionate developers ignited with the dream of bringing robotics and space engineering closer to people. We are driven by the belief that technology has the power to transform lives and we are thrilled to be a driving force behind that change.</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c4">
+            <label for="c4" class="card">                
+                <div class="row">
+                    <div class="icon"><h4>Our <br> Collaborations</h4></div>
+                    <div class="description">
+                        <div class="overlay"></div>
+                        <p>We proudly maintain strong ties with leading organizations that share our passion for STEM education and entrepreneurship. We are eager to collaborate with like-minded individuals and organizations to embark on meaningful projects and share our knowledge with those who are passionate about the transformative power of technology.</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+    
+    <script>
+        window.onload = function() {
+        const defaultCheckedCard = document.querySelector('input[name="slide"]:checked');
+        const defaultCheckedCardBackground = getComputedStyle(defaultCheckedCard.nextElementSibling).getPropertyValue('background-image');
+        const body = document.querySelector('body');
+        body.style.backgroundImage = defaultCheckedCardBackground;
+    };
+
+    const cards = document.querySelectorAll('input[name="slide"]');
+    const body = document.querySelector('body');
+
+    cards.forEach(card => {
+        card.addEventListener('change', function() {
+            const checkedCard = document.querySelector('input[name="slide"]:checked');
+            const checkedCardBackground = getComputedStyle(checkedCard.nextElementSibling).getPropertyValue('background-image');
+            body.style.backgroundImage = checkedCardBackground;
+        });
+    });
+    </script>
+
+{% endblock %}
