@@ -1,0 +1,16 @@
+.content {
+    margin-left: 145px;
+    padding: 20px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.img-fluid{
+    max-height: 506px;
+    min-height: 150px;
+    max-width: 640px;
+    min-width: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
