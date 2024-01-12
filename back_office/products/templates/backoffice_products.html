@@ -1,0 +1,104 @@
+{% extends 'back_base.html' %}
+{% block title %} {{ user }} products {% endblock %}
+
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'backoffice_products.css' %}">
+<div class="content">
+    <h1>{{ user }} products</h1>
+    <section class="py5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for product in products %}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                    <a href="{% url 'backoffice_product_detail' product.id %}" style="color: rgb(53, 52, 52); text-decoration: none;">
+                        {% if product.image %}
+                        <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                        {% else %}
+                        <img class="card-img-top" src="">
+                        {% endif %}
+                        <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">
+                            {{ product.name }}
+                            </h5>
+                        </a>
+                        Manufacturer:
+                        {{ product.brand }}<br>
+                        <h7>Availibility:
+                            {% if product.in_stock %}
+                            <span class="text-success">
+                                In stock</span>
+                            {% else %}
+                            <span class="text-danger">Out of stock</span>
+                            {% endif %}
+                        </h7><br><br>
+                        <h5>Price: €{{ product.price }}</h5>
+                        </div>
+                    </div>
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <form action="{% url 'backoffice_product_detail' product.id %}" method="POST">
+                                {% csrf_token %}                           
+                                <button type="submit" class="btn btn-primary">View details</button>
+                              </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% if products.count > 5 %}
+        <nav>
+            <ul class="pagination">
+                {% if products.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1">First</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.previous_page_number }}">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">First</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                {% endif %}
+    
+                {% for page in products.paginator.page_range %}
+                {% if products.number == page %}
+                    <li class="page-item active" aria-current="True">
+                    <a class="page-link" href="?page={{page}}">{{page}}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                    <a class="page-link" href="?page={{page}}">{{page}}</a>
+                    </li>
+                {% endif %}
+                {% endfor %}
+    
+                {% if products.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.next_page_number }}">Next</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ products.paginator.num_pages }}">Last</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">Next</a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link">Last</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

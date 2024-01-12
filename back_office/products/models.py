@@ -1,14 +1,17 @@
 from django.db import models
 from django.db.models import DecimalField
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True, max_length=350)
     details = models.TextField(null=True, blank=True, max_length=1000)
-    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[MinValueValidator(0.0)])
-    image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
+    price = models.DecimalField(max_digits=7, decimal_places=2, validators=[
+                                MinValueValidator(0.0)])
+    image = models.ImageField(
+        upload_to='uploads/product/', blank=True, null=True)
     in_stock = models.BooleanField(default=False)
     amount_sold = models.PositiveIntegerField(default=0)
     brand = models.ForeignKey(
@@ -50,6 +53,8 @@ class Brand(models.Model):
 
 
 class Supplier(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=255)
     products = models.ManyToManyField(
         Product, related_name='suppliers', blank=True)
