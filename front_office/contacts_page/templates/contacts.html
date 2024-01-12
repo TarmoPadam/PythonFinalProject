@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %} About RadicalS {% endblock %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'contacts.css' %}">
+<div class="container">
+<div class="form" id="contact-form-container">
+    <div class="contact-info">
+        <span class="circle two" id="rotate-circle"></span>
+        <h3 class="title">Let's get in touch</h3><br/>        
+        <p class="text">Greetings Explorers,
+
+            We are delighted to present the RadicalS Contacts Page—an interactive gateway to connect with the front office. Whether you're seeking information, have questions, or simply want to say hello, this is your direct line to our vibrant universe.</p>
+        <div class="map-container">
+            <iframe
+                max-width="80%"
+                max-height="80%"
+                frameboarder="0"
+                style="border:0"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2418.318146777315!2d24.754462!3d59.436534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4692941733fd1905%3A0x411f356d82cdba9a!2sTallinn!5e0!3m2!1sen!2sus!4v1637682881933!5m2!1sen!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                ></iframe>
+        </div>
+    </div>    
+    <div class="contact-form">
+        <span class="circle one"></span>
+    
+        <form id="contact-form" action="{% url 'contact_view' %}" method="post">
+            {% csrf_token %}
+            <h3 class="title">Contact Us</h3>
+            <div class="input-container ">
+                <input type="text" name="name" class="input">
+                <label for="name">Name</label>
+                <span>Name</span>
+            </div>
+            <div class="input-container">
+                <input type="text" name="email" class="input">
+                <label for="email">Email</label>
+                <span>Email</span>
+            </div>
+            <div class="input-container">
+                <input type="tel" name="phone" class="input">
+                <label for="phone">Phone</label>
+                <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+                <textarea type="message" name="message" class="input"></textarea>
+                <label for="message">Message</label>
+                <span>Message</span>
+            </div>
+            <input type="submit" value="Send" class="btn" />
+        </form>
+    </div>
+</div>
+<script>
+    const rotateCircle = document.getElementById('rotate-circle');
+
+    document.addEventListener('mousemove', function (e) {
+        let rotateX = (window.innerWidth - e.pageX) / 10;
+        let rotateY = (window.innerHeight - e.pageY) / 10;
+        rotateCircle.style.transform = `rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+    });
+</script>
+<script>
+    const inputs = document.querySelectorAll(".input");
+
+    function focusFunc() {
+        let parent = this.parentNode;
+        parent.classList.add("focus")
+    }
+
+    function blurFunc() {
+        let parent = this.parentNode;
+        if (this.value == "") {
+            parent.classList.remove("focus");
+        }
+    }
+
+    inputs.forEach((input) => {
+        input.addEventListener("focus", focusFunc);
+        input.addEventListener("blur", blurFunc);
+    });
+</script>
+<script>
+    const formContainer = document.getElementById("contact-form-container");
+    const contactForm = document.getElementById("contact-form");
+
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        formContainer.classList.add("animate-out");
+
+        setTimeout(() => {
+            contactForm.reset();
+            formContainer.classList.remove("animate-out");
+        }, 3000);
+    });
+</script>
+{% endblock %}
