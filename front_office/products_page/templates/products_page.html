@@ -62,4 +62,17 @@
       </div>
     </div>
   </section>
+  {% if not products %}
+    <div class="offset-2 py-5 text-center container">
+      <div class="row py-lg-5 col-lg-10">
+        <h1 class="fw-light">No products<br>
+          Please check back later
+        </h1>
+
+        <div class="offset-5 col-lg-2 col-md-5 row py-lg-1 mt-3">
+          <a href="{% url 'home_page:home' %}" class="btn btn-secondary mt-auto" role="button">Home</a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 {% endblock body %}
