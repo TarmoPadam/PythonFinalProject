@@ -6,12 +6,14 @@ from .forms import NewSupplierForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from back_office.supplier_login.models import SupplierDetail
 
 def register_request(request):
 	if request.method == "POST":
 		form = NewSupplierForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			SupplierDetail.objects.create(user=user).save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
 			return redirect("main:homepage")
