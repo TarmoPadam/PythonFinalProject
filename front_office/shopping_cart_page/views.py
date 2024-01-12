@@ -10,6 +10,16 @@ from back_office.products.models import Category, Brand, Product
 from back_office.orders.models import Order
 
 
+def calculate_total_items_in_cart(order_items):
+    total_items_in_cart = order_items.aggregate(
+        total_items=models.Sum('quantity'))['total_items']
+
+    if total_items_in_cart is None:
+        total_items_in_cart = 0
+
+    return total_items_in_cart
+
+
 @login_required
 def cart_view(request):
     user = request.user
@@ -17,8 +27,8 @@ def cart_view(request):
     order, created = Order.objects.get_or_create(order_user=user_detail)
     order_items = order.order_items.all()
 
-    total_items_in_cart = order_items.aggregate(
-        total_items=models.Sum('quantity'))['total_items']
+    total_items_in_cart = calculate_total_items_in_cart(order_items)
+    request.session['total_items_in_cart'] = total_items_in_cart
 
     total_order_cost = sum(order_item.item_price for order_item in order_items)
 
@@ -36,7 +46,12 @@ def cart_view(request):
             else:
                 order_item.quantity = 1
             order_item.save()
-            return redirect('shopping_cart_page:show_cart')
+            total_items_in_cart = calculate_total_items_in_cart(
+                order.order_items.all())
+            request.session['total_items_in_cart'] = total_items_in_cart
+            messages.success(
+                request, f"{order_item.product.name} added to the cart")
+            return redirect('front_office.products_page')
 
     return render(request, 'cart.html', {'order_items': order_items, 'total_items_in_cart': total_items_in_cart, 'all_categories': all_categories, 'all_brands': all_brands, 'total_order_cost': total_order_cost})
 
