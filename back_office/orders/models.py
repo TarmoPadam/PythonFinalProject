@@ -7,11 +7,17 @@ from django.dispatch import receiver
 
 
 # Create your models here.
+STATUS_CHOICES = [
+    ('pending', 'Pending'),
+    ('processing', 'Processing'),
+    ('shipped', 'Shipped'),
+    ('delivered', 'Delivered'),
+    ('canceled', 'Canceled'),
+]
 
 
 class Order(models.Model):
     order_number = models.CharField(max_length=20, unique=True, editable=False)
-    title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     order_products = models.ManyToManyField(Product, through='OrderItem')
@@ -22,9 +28,11 @@ class Order(models.Model):
     order_user = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     checkout_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0)
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES)
 
     def __str__(self):
-        return self.title
+        return f"{self.order_number} - {self.status}"
 
     def update_total_cost(self):
         total = sum(
