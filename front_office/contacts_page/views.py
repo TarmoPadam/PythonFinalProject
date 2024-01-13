@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import Message
-from django.utils import timezone
+from .forms import MessageForm
 
 
 def contact_view(request):
@@ -15,11 +16,18 @@ def contact_view(request):
             name=name, email=email, phone=phone, message=message)
         contact_message.save()
 
-        response_data = {
-            'success': True,
-            'message': 'Message received! Thank you for contacting us.'
-        }
-
-        return JsonResponse(response_data)
+        return render(request, 'contacts.html')
 
     return render(request, 'contacts.html')
+
+
+def message_detail(request, message_id):
+    message = get_object_or_404(Message, pk=message_id)
+
+    if request.method == 'GET':
+        message.is_read = True
+        message.save()
+
+        return HttpResponseRedirect(reverse('admin:messages'))
+
+    return render(request, 'message_detail.html', {'message': message})

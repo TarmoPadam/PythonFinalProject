@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Message Detail</title>
+
+    <!-- Add styles for the modal -->
+    <style>
+        /* Styles for the modal overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Styles for the modal content */
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            max-width: 80%;
+            max-height: 80%;
+            overflow: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <!-- Modal overlay -->
+    <div class="modal-overlay" onclick="closeModal()">
+        <!-- Modal content -->
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h1>Message Detail</h1>
+            <p>Name: {{ message.name }}</p>
+            <p>Email: {{ message.email }}</p>
+            <p>Phone: {{ message.phone }}</p>
+            <p>Message: {{ message.message }}</p>
+            <p>Created At: {{ message.created_at }}</p>
+
+            <!-- Back button to close the modal -->
+            <button onclick="closeModal()">Back</button>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle modal interactions -->
+    <script>
+        function openModal(url) {
+            $.get(url, function(data) {
+                // Set the content of the modal and display it
+                $('.modal-content').html(data);
+                $('.modal-overlay').show();
+            });
+        }
+        function closeModal() {
+            if (history.length > 0) {
+                // Redirect to the previous page
+                window.location.href = history.back();
+            } else {
+                // Redirect to the home page
+                window.location.href = '/';
+            }
+        }
+
+    </script>
+</body>
+</html>
