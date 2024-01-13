@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'front_office.account_page',
     'front_office.services_page',
     'front_office.shopping_cart_page',
+    'front_office.checkout_page',
     'back_office.settings',
     'back_office.sales',
     'back_office.orders',
