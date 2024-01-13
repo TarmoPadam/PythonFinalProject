@@ -47,15 +47,21 @@ def update_cart(request):
         order_item_id = request.POST.get('order_item_id')
         quantity = int(request.POST.get('quantity'))
         order_item = get_object_or_404(OrderItem, id=order_item_id)
-        if quantity > 0:
-            order_item.quantity = quantity
-            order_item.save()
+        if 'increment' in request.POST:
+            order_item.quantity += 1
             messages.success(
-                request, f"{order_item.product.name} quantity updated to {quantity}.")
-        else:
-            order_item.delete()
-            messages.success(
-                request, f"{order_item.product.name} removed from the cart.")
+                request, f"{order_item.product.name} quantity increased to {order_item.quantity}")
+
+        elif 'decrement' in request.POST:
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                messages.success(
+                    request, f"{order_item.product.name} quantity decreased to {order_item.quantity}")
+            else:
+                messages.success(
+                    request, f"Cannot decrease {order_item.product.name} below 1")
+        order_item.save()
+
     return redirect('shopping_cart_page:show_cart')
 
 
@@ -66,7 +72,7 @@ def remove_from_cart(request):
         order_item = get_object_or_404(OrderItem, id=order_item_id)
         order_item.delete()
         messages.success(
-            request, f"{order_item.product.name} removed from the cart.")
+            request, f"{order_item.product.name} removed from the cart")
         return redirect('shopping_cart_page:show_cart')
     else:
         return HttpResponseNotAllowed(['POST'])
