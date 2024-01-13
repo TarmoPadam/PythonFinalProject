@@ -1,23 +1,36 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
   Your Shopping Cart
 {% endblock title %}
 {% block body %}
+  <style>
+    #message-container {
+      position: fixed;
+      top: 2;
+      /* Display the container at the top of the page */
+      width: 50%;
+      /* Take up the full width of the page */
+      z-index: 20000;
+      /* Set a higher z-index to ensure the messages will be displayed above other content */
+    }
+  </style>
+  <link rel="stylesheet" href="{% static 'shopping_cart.css' %}">
 
   {% block content %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'shopping_cart.css' %}">
+    <div id="message-container">
+      {% for message in messages %}
+        <div class="offset-4 py-4 text-center container">
+          <div class="alert alert-light" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
 
-    <section class="py-5 text-right container">
-      <div class="row py-lg-5 col-lg-10">
-
-        {% if total_items_in_cart >= 1 %}
-
-          {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-              {{ message }}
-            </div>
-          {% endfor %}
+    {% if total_items_in_cart >= 1 %}
+      <section class="py-5 text-right container">
+        <div class="row py-lg-5 col-lg-10">
 
           <h2 class="fw-light">Your Shopping Cart
 
@@ -85,11 +98,6 @@
 
           {% else %}
 
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
             <div class="offset-2 py-5 text-center container">
               <div class="row py-lg-5 col-lg-10">
 
