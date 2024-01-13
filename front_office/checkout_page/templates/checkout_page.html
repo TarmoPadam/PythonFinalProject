@@ -1,0 +1,29 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %}Checkout{% endblock %} 
+{% block body %}
+<link rel="stylesheet" href="{% static 'checkout.css' %}" />
+<div class="background-image">
+  <br /><br />
+  <h1 style="color: aliceblue; text-align: center">
+    THANK YOU FOR YOUR ORDER!
+  </h1>
+  <p style="color: aliceblue; text-align: center">
+    Your order has been placed successfully and we have sent you a confirmation
+    e-mail with your order details.<br />
+    We hope you have enjoyed your shopping experience and wish you all the
+    success in your project!
+  </p>
+  <div class="bottom_text">
+    <p style="color: aliceblue; text-align: right">
+      More cool products are just a click away!
+    </p>
+  </div>
+  <div class="continue_shopping">
+    <a
+      href="{% url 'front_office.products_page' %}"
+      class="btn pull-right btn-primary mt-auto"
+      role="button">Continue shopping</a>
+  </div>
+</div>
+{% endblock body %}

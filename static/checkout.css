@@ -1,0 +1,24 @@
+.background-image {
+  background-image: url("images/checkout_handshake.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 83vh;
+}
+
+.bottom_text {
+    position: absolute;
+    bottom: 175px;
+    right: 100px;
+}
+
+.continue_shopping {
+    position: absolute;
+    bottom: 100px;
+    right: 100px;
+}

@@ -36,9 +36,9 @@
               </form>
             </div>
             {% if product.image %}
-              <img class="card-img-top" src="{{ product.image.url }}" alt="">
+              <img class="card-img-top; img-fluid; max-width: 100%; height: auto" src="{{ product.image.url }}" alt="">
             {% else %}
-              <img class="card-img-top" src="">
+              <img class="card-img-top; img-fluid; max-width: 100%; height: auto" src="">
             {% endif %}
           </div>
         </div>
