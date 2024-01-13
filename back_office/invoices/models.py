@@ -15,6 +15,7 @@ class InvoiceDetail(models.Model):
     total_price = models.PositiveIntegerField(null=True, blank=True)
     
     def __str__(self):
-        return self.invoice_number  
+        return f'invoice{self.invoice_number}'
+    
     
     
