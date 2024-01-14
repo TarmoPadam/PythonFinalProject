@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'front_office.products_page',
     'front_office.pdp_page',
     'front_office.about_page',
+    'front_office.contacts_page',
     'front_office.account_page',
     'front_office.services_page',
     'front_office.shopping_cart_page',
