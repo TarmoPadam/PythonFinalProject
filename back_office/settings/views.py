@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from .forms import VariablesForm
 from .models import Variables
 
 
@@ -7,11 +6,14 @@ def settings(request):
     variables = Variables.objects.first()
 
     if request.method == 'POST':
-        form = VariablesForm(request.POST, instance=variables)
-        if form.is_valid():
-            form.save()
-            return redirect('settings')
-    else:
-        form = VariablesForm(instance=variables)
-
-    return render(request, "settings.html", {'form': form})
+        website_title = request.POST.get("title")
+        description = request.POST.get("description")
+        currency = request.POST.get("currency")
+        if website_title:
+            variables.website_title = website_title
+        if description:
+            variables.homepage_description = description
+        if currency:
+            variables.website_currency = currency
+    variables.save()
+    return render(request, "settings.html", {'variables': variables})

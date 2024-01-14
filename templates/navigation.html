@@ -46,6 +46,13 @@
         {% endif %}
       </ul>
       <ul class=" navbar-nav mb">
+        <li class="nav-item">
+          <a class="nav-link">
+            {% if variable.website_currency %}
+              {{ variable.website_currency }}
+            {% else %}EUR{% endif %}
+          </a>
+        </li>
         <li class="nav-item" aria-label="Shopping cart icon">
           <a class="nav-link" href="{% url 'shopping_cart_page:show_cart' %}">
             <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" fill="currentColor" viewbox="0 0 16 16">

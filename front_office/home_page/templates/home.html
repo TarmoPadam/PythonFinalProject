@@ -9,7 +9,13 @@
       <div class="row py-lg-5">
         <div class="offset-2 col-lg-5 col-md-7 hero-text">
           <h1 class="fw-light">BUILDING ROBOTS MADE EASY</h1>
-          <p class="lead text-body-secondary">All products you will find here are handpicked, field tested and approved by our hardcore robotics engineers</p>
+          <p class="lead text-body-secondary">
+            {% if variable.homepage_description %}
+              {{ variable.homepage_description }}
+            {% else %}
+              All products you will find here are handpicked, field tested and approved by our hardcore robotics engineers
+            {% endif %}
+          </p>
         </div>
       </div>
     </section>
