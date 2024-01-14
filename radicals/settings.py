@@ -88,6 +88,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'front_office.shopping_cart_page.context_processors.cart_items_count',
+                'back_office.settings.variables.variable',
             ],
         },
     },

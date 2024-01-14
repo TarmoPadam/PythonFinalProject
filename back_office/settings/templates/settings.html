@@ -1,0 +1,35 @@
+{% extends "back_base.html" %}
+{% block title %}
+  BackOffice/Settings
+{% endblock title %}
+{% block body %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'settings.css' %}">
+
+  <div class="content">
+    <h1>Settings</h1>
+    <div class="container-fluid">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="title" class="form-label">Website Title - Active title: '{{ variable.website_title }}'</label>
+          <input type="text" class="form-control" id="title" name="title">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+
+        <div class="mb-3">
+          <label for="description" class="form-label">Homepage description - Active description: '{{ variable.homepage_description }}'</label>
+          <input type="text" class="form-control" id="description" name="description">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+
+        <div class="mb-3">
+          <label for="currency" class="form-label">Currency - Active currency: '{{ variable.website_currency }}'</label>
+          <input type="text" class="form-control" id="currency" name="currency">
+          <button type="submit" class="btn btn-success">Save</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+{% endblock body %}
