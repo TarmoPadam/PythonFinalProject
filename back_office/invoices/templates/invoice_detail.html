@@ -1,0 +1,28 @@
+{% extends "back_base.html" %}
+{% block title %} {% endblock %}
+{% block body %}
+<div class="container", style="float: right;">
+    <div class="row">
+        <div class="table"> 
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Invoice number</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Total Discount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{invoice.invoice_number}}</td>
+                        <td>{{invoice.customer}}</td>
+                        <td>{{invoice.total_price}}</td>
+                        <td>{{invoice.order_discount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
