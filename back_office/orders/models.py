@@ -28,8 +28,8 @@ class Order(models.Model):
     order_user = models.ForeignKey(UserDetail, on_delete=models.CASCADE)
     checkout_price = models.DecimalField(
         max_digits=10, decimal_places=2, default=0)
-    status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES)
+    status = models.CharField(null=True, blank=True,
+                              max_length=20, choices=STATUS_CHOICES)
 
     def __str__(self):
         return f"{self.order_number} - {self.status}"
