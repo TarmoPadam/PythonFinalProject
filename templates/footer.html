@@ -1,40 +1,32 @@
-<!DOCTYPE html>
-<html>
-
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Footer</title>
-    <link rel="stylesheet" href="/static/footer.css">
-  </head>
-
-  <body>
-    <div class="footer">
-      <div class="col-1">
-        <h3>USEFUL LINKS</h3>
-        <a href="#">About Us</a>
-        <a href="#">Support</a>
-        <a href="#">Contact</a>
-        <a href="#">Products</a>
-      </div>
-      <div class="col-2">
-        <h3>NEWSLETTER</h3>
-        <form>
-          <input type="email" placeholder="Your Email Address" required="required">
-          <br>
-          <button type="submit">SUBSCRIBE NOW</button>
-        </form>
-      </div>
-      <div class="col-3">
-        <h3>CONTACT</h3>
-        <p>Address: A.H. Tammsaare tee 47<br>Tallinn, Estonia</p>
-        <p>Payment methods:</p>
-        <div class="payment-methods">
-          <img src="/static/assets/visa.png" width="45" height="30" alt="Visa logo">Visa
-          <img src="/static/assets/MasterCard.png" width="45" height="30" alt="MasterCard logo">MasterCard
-          <img src="/static/assets/PayPal.jpeg" width="45" height="30" alt="PayPal logo">PayPal
-        </div>
-        <div class="copyright">
-          <span>Copyright © 2024, RadicalS</span>
-        </div>
-      </body>
-      <html>
+{% load static %}
+<link rel="stylesheet" href="{% static 'footer.css' %}">
+<div class="footer row">
+  <div class="col-1">
+    <h3>USEFUL LINKS</h3>
+    <a href="#">About Us</a>
+    <a href="#">Support</a>
+    <a href="#">Contact</a>
+    <a href="#">Products</a>
+  </div>
+  <div class="col-2">
+    <h3>NEWSLETTER</h3>
+    <form>
+      <input type="email" placeholder="Your Email Address" required="required">
+      <br>
+      <button type="submit">SUBSCRIBE NOW</button>
+    </form>
+  </div>
+  <div class="col-3">
+    <h3>CONTACT</h3>
+    <p>Address: A.H. Tammsaare tee 47<br>Tallinn, Estonia</p>
+    <p>Payment methods:</p>
+    <div class="payment-methods">
+      <img src="/static/assets/visa.png" width="45" height="30" alt="Visa logo">Visa
+      <img src="/static/assets/MasterCard.png" width="45" height="30" alt="MasterCard logo">MasterCard
+      <img src="/static/assets/PayPal.jpeg" width="45" height="30" alt="PayPal logo">PayPal
+    </div>
+    <div class="copyright">
+      <span>Copyright © 2024, RadicalS</span>
+    </div>
+  </div>
+</div>
