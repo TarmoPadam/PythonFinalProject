@@ -31,6 +31,7 @@ urlpatterns = [
     path('back_office/settings/', include('back_office.settings.urls')),
     path('about/', include('front_office.about_page.urls')),
     path('accounts/', include('front_office.account_page.urls')),
+    path('contacts/', include('front_office.contacts_page.urls')),
     path('home/', include('front_office.home_page.urls')),
     path('products/', include('front_office.products_page.urls')),
     path('pdp/<int:pk>', include('front_office.pdp_page.urls')),
